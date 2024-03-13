@@ -3,14 +3,14 @@
  * Escreva uma descrição da classe WordGuessingGame aqui.
  * 
  * @author (Diana e Vitor) 
- * @version (versão 0.1)
+ * @version (versão 2.2)
  */
 
 public class WordGuessingGame
 {
     // variáveis de instância
     private String hiddenWord;
-    private String guessebWord;
+    private String guessedWord;
     private int numberOfTries;   
     private InputReader reader;
     
@@ -22,7 +22,7 @@ public class WordGuessingGame
     {
         // inicializa variáveis de instância
         this.hiddenWord = "abc";
-        this.guessebWord = "___";
+        this.guessedWord = "___";
         this.numberOfTries = numberOfTries;
         this.reader = new InputReader();
     }
@@ -35,12 +35,12 @@ public class WordGuessingGame
         return hiddenWord;
     }
     
-    public void setGuessebWord(String guessebWord){
-        this.guessebWord = guessebWord;
+    public void setGuessedWord(String guessedWord){
+        this.guessedWord = guessedWord;
     }
     
-    public String getGuessebWord(){
-        return guessebWord;
+    public String getGuessedWord(){
+        return guessedWord;
     }
     
     public void setNumberOfTries(int numberOfTries){
@@ -51,35 +51,42 @@ public class WordGuessingGame
         return numberOfTries;
     }
     
-    private void showGuessebWord(){
-        System.out.println("Guess word: " + getGuessebWord());
+    private void showGuessedWord(){
+        System.out.println("Guessed word: " + getGuessedWord());
     }
-     public void play(){
-        new InputReader
-        char key = input.next().charAt(0);
-        guess(key);
-        
+    
+    public void play(){
+        char key = reader.getChar("Please enter a letter: ");
+        if(guessedWord.equals(hiddenWord)){
+            showGuessedWord();
+            showResult();
         }
+        else{
+            guess(key);
+        }
+    }
+    
     private void showWelcome(){
-     System.out.println("********* Bem Vindo ********");
+     System.out.println("********* Welcome ********");
     }
     
     private void guess(char letter){
         for(int i = 0 ; i < hiddenWord.length(); i++ ){ 
-            if(hiddenWord.charAt(i)==letter){
-                System.out.println("Letra encontrada");
-                guessedWord.replace(i, letter);
+            if(hiddenWord.charAt(i) == letter){
+                System.out.println("Letter is correct.");
+                guessedWord = guessedWord.substring(0, i) + letter + guessedWord.substring(i + 1);
                 break;
             }
             else{
-                System.out.println("Letra não encontrada");
-                numeberOfTries++;
+                System.out.println("Wrong letter.");
+                numberOfTries++;
             }
         }
      
-    } 
+    }
+    
     private void showResult(){
-        System.out.println("Tentativas: " + numberOfTries);
+        System.out.println("Number of tries: " + numberOfTries);
     }
     
 }
