@@ -3,7 +3,7 @@
  * Escreva uma descrição da classe WordGuessingGame aqui.
  * 
  * @author (Diana e Vitor) 
- * @version (versão 2.2)
+ * @version (versão 2.3)
  */
 
 public class WordGuessingGame
@@ -56,6 +56,7 @@ public class WordGuessingGame
     }
     
     public void play(){
+        showWelcome();
         char key = reader.getChar("Please enter a letter: ");
         if(guessedWord.equals(hiddenWord)){
             showGuessedWord();
